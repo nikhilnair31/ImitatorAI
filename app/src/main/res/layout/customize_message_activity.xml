@@ -115,7 +115,6 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="24dp"
-        android:background="@color/fab_color"
         android:baselineAlignBottom="true"
         android:text="@string/create"
         android:textColor="@color/white"
