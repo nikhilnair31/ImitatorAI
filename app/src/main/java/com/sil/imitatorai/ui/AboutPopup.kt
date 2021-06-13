@@ -8,7 +8,6 @@ import com.sil.imitatorai.BuildConfig
 import com.sil.imitatorai.R
 import kotlinx.android.synthetic.main.about_popup.*
 
-
 class AboutPopup : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +26,7 @@ class AboutPopup : AppCompatActivity() {
 
         github_link.setOnClickListener {
             val openURL = Intent(android.content.Intent.ACTION_VIEW)
-            openURL.data = Uri.parse("https://github.com/suyashm002/watsappp_bot/")
+            openURL.data = Uri.parse("https://github.com/nikhilnair31/ImitatorAI.git")
             startActivity(openURL)
         }
 

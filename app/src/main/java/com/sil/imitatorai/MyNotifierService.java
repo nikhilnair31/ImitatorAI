@@ -39,6 +39,7 @@ public class MyNotifierService extends NotificationListenerService {
     private Realm realm;
 
     RealmResults<SaveCustomeMessage> list;
+
     Handler mHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
