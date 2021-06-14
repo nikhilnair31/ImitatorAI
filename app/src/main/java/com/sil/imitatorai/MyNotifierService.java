@@ -1,7 +1,7 @@
 package com.sil.imitatorai;
 
-import android.annotation.SuppressLint;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Environment;
@@ -24,9 +24,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
-import io.realm.Realm;
 import io.realm.RealmResults;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -34,7 +36,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-@SuppressLint("OverrideAbstract")
 public class MyNotifierService extends NotificationListenerService {
     private BufferedWriter bw;
     public static final String TAG = "Sil";
@@ -44,38 +45,26 @@ public class MyNotifierService extends NotificationListenerService {
     private MyHandler handler = new MyHandler();
     private String nMessage;
     private String data;
-    private Realm realm;
-
-    RealmResults<SaveCustomeMessage> list;
 
     Handler mHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
             String msgString = (String) msg.obj;
-            Toast.makeText(getApplicationContext(), msgString, Toast.LENGTH_LONG).show();
+            Toast.makeText(MyNotifierService.this.getApplicationContext(), msgString, Toast.LENGTH_LONG).show();
         }
     };
 
     public void getreply(String url, String msg, Action action) {
+        String newurl = url+msg;
         Log.i(TAG, "getreply url: "+url);
         Log.i(TAG, "getreply msg: "+msg);
-        String newurl = url+msg;
         Log.i(TAG, "getreply newurl: "+newurl);
+
         Request request = new Request.Builder().url(newurl).build();
-//        Response response = client.newCall(request).execute();
-//        if(response.isSuccessful()){
-//            Log.i(TAG, "getreply response.body().string(): "+response.body().string());
-//        }
-//        else {
-//            Log.i(TAG, "response flopped");
-//        }
-        Log.i(TAG, "pre client.newCall(request).enqueue");
-        client.newCall(request).enqueue(new Callback() {
-            @Override
+        this.client.newCall(request).enqueue(new Callback() {
             public void onFailure(Call call, IOException e) {
                 Log.i(TAG, "onFailure botReply error: "+e);
             }
-            @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 assert response.body() != null;
                 String botReply = response.body().string().replace("\"", "");
@@ -90,27 +79,23 @@ public class MyNotifierService extends NotificationListenerService {
         });
     }
 
-    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i("Suyash", "Service is started" + "-----");
+        Log.i(TAG, "Service is started" + "-----");
         if (intent != null && intent.hasExtra("data"))
         data = intent.getStringExtra("data");
         return super.onStartCommand(intent, flags, startId);
     }
 
-    @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
         super.onNotificationRemoved(sbn);
         Log.i(TAG, "onNotificationRemoved");
     }
 
-    @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
-        // super.onNotificationPosted(sbn);
-        realm = Realm.getDefaultInstance();
+
         Log.i(TAG, "Here");
 
-        MyNotifierService.this.cancelNotification(sbn.getKey());
+        cancelNotification(sbn.getKey());
         Action action = NotificationUtils.getQuickReplyAction(sbn.getNotification(), getPackageName());
 
         if (action != null) {
@@ -119,24 +104,27 @@ public class MyNotifierService extends NotificationListenerService {
             if (sbn.getPackageName().equalsIgnoreCase("com.whatsapp")) {
                 String user = sbn.getNotification().extras.getString("android.title");
                 String msg = sbn.getNotification().extras.getString("android.text");
-                Log.i(TAG, "user/android.title: "+user);
-                Log.i(TAG, "msg/android.text: "+msg);
                 Log.i(TAG, "getNotification.extras: "+sbn.getNotification().extras);
 
-                list = realm.where(SaveCustomeMessage.class).equalTo("expectedMessage",msg).findAll();
-                Log.i(TAG, "list: "+list);
+                Map<String, ?> allEntries = getSharedPreferences("test", Context.MODE_PRIVATE).getAll();
+                ArrayList<HashMap<String, String>> mlist = new ArrayList<>();
+                for (Map.Entry<String, ?> item : allEntries.entrySet()) {
+                    HashMap<String, String> minimap = new HashMap<>();
+                    minimap.put(item.getKey(), item.getValue().toString());
+                    mlist.add(minimap);
+                }
+                Log.i(TAG, "mlist: "+mlist);
 
                 if (msg != null && !msg.equalsIgnoreCase( "📷 Photo")) {
-                    Log.i(TAG, "msg != null && !msg.equalsIgnoreCase( \"\uD83D\uDCF7 Photo\")");
-                    if(user.equalsIgnoreCase("Mom") || user.equalsIgnoreCase("Ach")){
-                        getreply("https://8o8a00bofa.execute-api.ap-south-1.amazonaws.com/v2/reply?message=", msg, action);
+                    for (HashMap<String, String> item : mlist) {
+                        Log.i(TAG, item.toString());
+                        if (item.containsKey(user)) {
+                            Log.i(TAG, item.toString()+" | "+user);
+                            this.getreply("https://8o8a00bofa.execute-api.ap-south-1.amazonaws.com/v2/reply?message=", msg, action);
+                            break;
+                        }
                     }
-//                        if (realm.where(SaveCustomeMessage.class).equalTo("expectedMessage", msg).findAll().isValid())
-//                            list = realm.where(SaveCustomeMessage.class).equalTo("expectedMessage", msg).findAll();
-//                        if (!list.isEmpty())
-//                            action.sendReply(getApplicationContext(), list.get(0).getReplyMessage());
                 }
-//                   action.sendReply(getApplicationContext(), "This is bot of suyash . When suyash see this msg he'll reply to you. I am not trained well I am in training");
             }
         }
         else {
@@ -167,19 +155,16 @@ public class MyNotifierService extends NotificationListenerService {
             }
         }
         catch (Exception e) {
-           Toast.makeText(MyNotifierService.this, "Unresolvable notification", Toast.LENGTH_SHORT).show();
+           Toast.makeText(this, "Unresolvable notification", Toast.LENGTH_SHORT).show();
         }
 
     }
 
     private void writeData(String str) {
         try {
-//          bw.newLine();
-//          bw.write("NOTE");
             bw.newLine();
             bw.write(str);
             bw.newLine();
-//          bw.newLine();
             bw.close();
         }
         catch (IOException e) {
@@ -188,8 +173,6 @@ public class MyNotifierService extends NotificationListenerService {
     }
 
     private void init() {
-        // realm = Realm.getDefaultInstance();
-        //  list = ArrayList(realm.where(SaveCustomeMessage::class.java));
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             FileOutputStream fos = new FileOutputStream(newFile(), true);
@@ -210,11 +193,9 @@ public class MyNotifierService extends NotificationListenerService {
     }
 
     class MyHandler extends Handler {
-        @Override
         public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case 1:
-//                    Toast.makeText(MyService.this,"Bingo",Toast.LENGTH_SHORT).show();
+            if (msg.what == 1) {
+                Log.e(TAG, "msg.what == 1");
             }
         }
     }

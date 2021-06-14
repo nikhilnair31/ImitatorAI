@@ -16,7 +16,6 @@ import io.realm.Realm
 import kotlinx.android.synthetic.main.customize_message_activity.*
 import java.util.*
 
-
 /**
  *
  */

@@ -4,15 +4,11 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.sil.imitatorai.R
 import com.sil.imitatorai.models.SaveCustomeMessage
 import io.realm.Realm
 import kotlinx.android.synthetic.main.create_update_activity.*
-import java.util.*
 
 
 /**
@@ -71,12 +67,13 @@ class CreateUpdateActivity : AppCompatActivity() {
     }
 
     private fun deleteMessage() {
-        val msgs = realm.where(SaveCustomeMessage::class.java).findAll()
+        val prefs = getSharedPreferences("test", Context.MODE_PRIVATE)
+        prefs.edit().remove(target_name_edittext.text.toString()).apply()
 
+        val msgs = realm.where(SaveCustomeMessage::class.java).findAll()
         val userdatabase =
             msgs.where().equalTo("expectedMessage", target_name_edittext.text.toString())
                 .equalTo("replyMessage", reply_rate_edittext.text.toString()).findFirst()
-
         if (userdatabase != null) {
             if (!realm.isInTransaction) {
                 realm.beginTransaction()
