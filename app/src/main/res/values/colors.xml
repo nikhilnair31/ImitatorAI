@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <color name="colorPrimary">#FFE6FF</color>
     <color name="colorPrimaryDark">#FFB3FF</color>
-    <color name="colorAccent">#FF80FF</color>
+    <color name="colorAccent">#FFEBB8</color>
 
-    <color name="divider_line">#fff</color>
-    <color name="app_secondary_text">#fff</color>
+    <color name="divider_line">#F2F2F2</color>
+    <color name="app_secondary_text">#999999</color>
 
     <color name="white">#fff</color>
     <color name="black">#000000</color>
@@ -14,8 +14,9 @@
     <color name="splash_background">#fff</color>
     <color name="transparent">#00000000</color>
 
-    <color name="header_color">#ED9CFF</color>
-    <color name="fab_color">#ED9CFF</color>
+    <color name="header_color">#F3BFFF</color>
+    <color name="fab_primary_color">#EBB8FF</color>
+    <color name="fab_accent_color">#B8FFEB</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true"> #ED9CFF</color>
 
 </resources>

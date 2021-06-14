@@ -13,18 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.sil.imitatorai.ui.SplashActivity" android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+        <activity android:name="com.sil.imitatorai.ui.SplashActivity" android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name="com.sil.imitatorai.ui.CustomizeMessageActivity" android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity android:name="com.sil.imitatorai.ui.CustomizeMessageActivity" android:theme="@style/AppTheme" />
 
-        <activity android:name="com.sil.imitatorai.ui.CreateUpdateActivity" android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+        <activity android:name="com.sil.imitatorai.ui.CreateUpdateActivity" android:theme="@style/AppTheme"/>
 
-        <activity android:name="com.sil.imitatorai.ui.AboutPopup" android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+        <activity android:name="com.sil.imitatorai.ui.AboutPopup" android:theme="@style/AppTheme"/>
 
         <service
             android:name="com.sil.imitatorai.MyNotifierService"
@@ -35,6 +35,9 @@
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
         </service>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
     </application>
 

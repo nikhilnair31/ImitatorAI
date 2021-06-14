@@ -78,9 +78,9 @@ class CustomizeMessageActivity : AppCompatActivity() {
 
     private fun checkIfListEmpty() {
         if (list.isNotEmpty()) {
-            no_reply.visibility = View.GONE
+            no_target.visibility = View.GONE
         } else {
-            no_reply.visibility = View.VISIBLE
+            no_target.visibility = View.VISIBLE
         }
     }
 

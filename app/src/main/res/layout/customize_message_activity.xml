@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
@@ -13,22 +14,24 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/montserrat"
             android:text="@string/auto_reply"
             android:textColor="@color/black"
-            android:layout_marginStart="16dp"
             android:textSize="35sp"
             android:textStyle="bold" />
-
 
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/info_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-             android:layout_marginTop="24dp"
-            android:layout_marginEnd="18dp"
             android:layout_alignParentEnd="true"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
             android:background="@drawable/ic_info" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -39,16 +42,15 @@
             android:layout_marginEnd="30dp"
             android:layout_toStartOf="@+id/info_button"
              />
+
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/no_reply"
+            android:id="@+id/no_target"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="@string/no_reply_available"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/no_target_assigned"
             android:textColor="@color/header_color" />
-
-
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -56,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/notification_layout"
-            android:layout_marginTop="50dp" />
+            android:layout_marginTop="40dp" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/botto_layout"
@@ -68,43 +70,45 @@
              android:elevation="20dp"
             app:cardElevation="20dp"
             android:layout_alignParentBottom="true">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/give_permission"
-                android:layout_marginStart="@dimen/margin_sixteen"
-                android:layout_marginTop="@dimen/margin_ten"
-                android:layout_marginEnd="@dimen/margin_sixteen"
-                android:fontFamily="sans-serif-medium"
-                android:layout_marginBottom="@dimen/margin_sixteen"/>
 
-            <TextView
-                android:id="@+id/give_permission_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/give_permission_access"
-                android:textColor="@color/fab_color"
-                android:textSize="16sp"
-                android:textAllCaps="true"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:background="@drawable/transparent_background"
-                android:layout_marginTop="16dp"
-                 android:drawablePadding="8dp"
-                 android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:layout_marginBottom="@dimen/margin_sixteen"
-                android:layout_marginEnd="@dimen/margin_sixteen"
-                  android:layout_marginStart="@dimen/margin_sixteen"
-                 />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_marginStart="@dimen/margin_sixteen"
+                    android:layout_marginTop="@dimen/margin_ten"
+                    android:layout_marginEnd="@dimen/margin_sixteen"
+                    android:layout_marginBottom="@dimen/margin_sixteen"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/give_permission" />
+
+                <TextView
+                    android:id="@+id/give_permission_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/margin_sixteen"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="@dimen/margin_sixteen"
+                    android:layout_marginBottom="@dimen/margin_sixteen"
+                    android:background="@drawable/transparent_background"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/give_permission_access"
+                    android:textAllCaps="true"
+                    android:textColor="@color/fab_primary_color"
+                    android:textSize="16sp" />
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
-
 
     </com.google.android.material.circularreveal.CircularRevealRelativeLayout>
 
@@ -113,15 +117,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:baselineAlignBottom="true"
-        android:text="@string/create"
         android:textColor="@color/white"
-        android:textSize="16sp"
-        app:backgroundTint="@color/fab_color"
+        android:textSize="20sp"
+        app:backgroundTint="@color/colorAccent"
         app:icon="@drawable/ic_add_white"
         app:iconTint="@color/white"
-        app:layout_anchorGravity="end" />
+        app:layout_anchorGravity="end"
+        app:shapeAppearanceOverlay="@style/SingleFab" />
 
 </com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout>
