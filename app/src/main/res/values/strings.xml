@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">ReadNotification</string>
+    <string name="app_name">imitatorAI</string>
     <string name="enter_the_expected_message">Enter the expected message from your friend</string>
-    <string name="your_expected_message_from_friends">Message received</string>
-    <string name="your_reply_message">Reply</string>
+    <string name="target_name_hint">Name of contact</string>
+    <string name="reply_rate_hint">Frequency of replies</string>
     <string name="add">Add</string>
     <string name="delete_msg">Delete this message</string>
     <string name="enable_notification">Turn on notification listening service</string>
-    <string name="auto_reply">Auto Reply</string>
+    <string name="auto_reply">imitatorAI</string>
     <string name="create">Create</string>
     <string name="no_reply_available">No reply available</string>
     <string name="done">Done</string>

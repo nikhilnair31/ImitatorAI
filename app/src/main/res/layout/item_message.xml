@@ -14,7 +14,7 @@
         android:layout_marginTop="@dimen/margin_sixteen"
         android:layout_marginEnd="@dimen/margin_sixteen"
         android:fontFamily="sans-serif-medium"
-        android:text="@string/your_expected_message_from_friends"
+        android:text="@string/target_name_hint"
         android:textColor="@color/header_color"
         android:textSize="12sp" />
 
@@ -37,7 +37,7 @@
         android:layout_marginStart="@dimen/margin_sixteen"
         android:layout_marginTop="@dimen/margin_ten"
         android:layout_marginEnd="@dimen/margin_sixteen"
-        android:text="@string/your_reply_message"
+        android:text="@string/reply_rate_hint"
         android:textColor="@color/app_secondary_text"
         android:fontFamily="sans-serif-medium"
         android:textSize="10sp" />

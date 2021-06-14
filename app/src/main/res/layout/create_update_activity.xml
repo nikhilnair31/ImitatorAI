@@ -29,11 +29,12 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="28dp"
             android:clickable="true"
-            android:layout_marginEnd="16dp"/>
+            android:layout_marginEnd="16dp"
+            android:focusable="true" />
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/message_received"
+            android:id="@+id/target_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,11 +44,11 @@
             android:layout_below="@+id/header"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
-            android:hint="@string/your_expected_message_from_friends"
+            android:hint="@string/target_name_hint"
              >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/message_received_edittext"
+                android:id="@+id/target_name_edittext"
                 android:layout_width="match_parent"
                 android:paddingTop="@dimen/margin_sixteen"
                 android:paddingBottom="@dimen/margin_sixteen"
@@ -57,7 +58,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/message_reply"
+            android:id="@+id/reply_rate"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,14 +66,14 @@
             android:backgroundTint="@color/fab_color"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
-            android:hint="@string/your_reply_message"
+            android:hint="@string/reply_rate_hint"
             android:padding="10dp"
             android:layout_marginTop="@dimen/margin_sixteen"
-            android:layout_below="@+id/message_received"
+            android:layout_below="@+id/target_name"
             >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/message_reply_edittext"
+                android:id="@+id/reply_rate_edittext"
                 android:layout_width="match_parent"
                 android:paddingTop="@dimen/margin_sixteen"
                 android:paddingBottom="@dimen/margin_sixteen"

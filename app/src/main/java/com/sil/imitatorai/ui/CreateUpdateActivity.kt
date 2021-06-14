@@ -1,21 +1,32 @@
 package com.sil.imitatorai.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.sil.imitatorai.R
 import com.sil.imitatorai.models.SaveCustomeMessage
 import io.realm.Realm
 import kotlinx.android.synthetic.main.create_update_activity.*
+import java.util.*
 
+
+/**
+ *
+ */
 class CreateUpdateActivity : AppCompatActivity() {
 
     private lateinit var realm: Realm
     private var isUpdateMessage = false
     private var messageId = ""
 
+    /**
+     *
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -23,11 +34,11 @@ class CreateUpdateActivity : AppCompatActivity() {
 
         isUpdateMessage = intent.getBooleanExtra(CustomizeMessageActivity.IS_UPDATE_MESSAGE, false)
         if (intent != null && intent.getParcelableExtra<SaveCustomeMessage>("DATA") != null && isUpdateMessage) {
-            updateMessage(intent.getParcelableExtra<SaveCustomeMessage>("DATA")!!)
+            updateMessage(intent.getParcelableExtra("DATA") ?: return)
             delete_button.visibility = View.VISIBLE
-            messageId = intent.getParcelableExtra<SaveCustomeMessage>("DATA")!!.expectedMessage.toString()
-        }
-        else {
+            messageId = (intent.getParcelableExtra<SaveCustomeMessage>("DATA")
+                ?: return).expectedMessage.toString()
+        } else {
             delete_button.visibility = View.GONE
         }
 
@@ -35,7 +46,7 @@ class CreateUpdateActivity : AppCompatActivity() {
         realm.beginTransaction()
         realm.commitTransaction()
 
-        done_button.setOnClickListener { View ->
+        done_button.setOnClickListener {
             if (checkError()) {
                 initEditText()
             } else {
@@ -51,19 +62,20 @@ class CreateUpdateActivity : AppCompatActivity() {
     }
 
     private fun showError() {
-        message_received.isErrorEnabled = true
-        message_reply.isErrorEnabled = true
+        target_name.isErrorEnabled = true
+        reply_rate.isErrorEnabled = true
     }
 
     private fun checkError(): Boolean {
-        return !message_received_edittext.text?.isEmpty()!! && !message_reply_edittext.text?.isEmpty()!!
+        return !target_name_edittext.text?.isEmpty()!! && !reply_rate_edittext.text?.isEmpty()!!
     }
 
     private fun deleteMessage() {
         val msgs = realm.where(SaveCustomeMessage::class.java).findAll()
 
-        val userdatabase = msgs.where().equalTo("expectedMessage", message_received_edittext.text.toString())
-                .equalTo("replyMessage", message_reply_edittext.text.toString()).findFirst()
+        val userdatabase =
+            msgs.where().equalTo("expectedMessage", target_name_edittext.text.toString())
+                .equalTo("replyMessage", reply_rate_edittext.text.toString()).findFirst()
 
         if (userdatabase != null) {
             if (!realm.isInTransaction) {
@@ -76,27 +88,42 @@ class CreateUpdateActivity : AppCompatActivity() {
     }
 
     private fun updateMessage(saveCustomeMessage: SaveCustomeMessage) {
-        message_received_edittext.setText(saveCustomeMessage.expectedMessage)
-        message_reply_edittext.setText(saveCustomeMessage.replyMessage)
+        target_name_edittext.setText(saveCustomeMessage.expectedMessage)
+        reply_rate_edittext.setText(saveCustomeMessage.replyMessage)
     }
 
     private fun initEditText() {
         if (isUpdateMessage) {
-            header.setText(getString(R.string.update))
+            //SharedPrefs attempt
+            val prefs = getSharedPreferences("test", Context.MODE_PRIVATE)
+            prefs.edit().putString(
+                target_name_edittext.text.toString(),
+                reply_rate_edittext.text.toString()
+            ).apply()
+
+            header.text = getString(R.string.update)
             realm.executeTransaction {
-                var saveCustomeMessage = it.where(SaveCustomeMessage::class.java).equalTo("expectedMessage", messageId).findFirst()
-                saveCustomeMessage.expectedMessage = message_received_edittext.text?.toString()
-                saveCustomeMessage.replyMessage = message_reply_edittext.text?.toString()
+                var saveCustomeMessage =
+                    it.where(SaveCustomeMessage::class.java).equalTo("expectedMessage", messageId)
+                        .findFirst()
+                saveCustomeMessage?.expectedMessage = target_name_edittext.text?.toString()
+                saveCustomeMessage?.replyMessage = reply_rate_edittext.text?.toString()
             }
             finish()
 
-        }
-        else {
-            header.setText(getString(R.string.create))
+        } else {
+            //SharedPrefs attempt
+            val prefs = getSharedPreferences("test", Context.MODE_PRIVATE)
+            prefs.edit().putString(
+                target_name_edittext.text.toString(),
+                reply_rate_edittext.text.toString()
+            ).apply()
+
+            header.text = getString(R.string.create)
             realm.executeTransactionAsync({
                 val message = it.createObject(SaveCustomeMessage::class.java)
-                message.expectedMessage = message_received_edittext.text.toString()
-                message.replyMessage = message_reply_edittext.text.toString()
+                message.expectedMessage = target_name_edittext.text.toString()
+                message.replyMessage = reply_rate_edittext.text.toString()
 
             }, {
                 Log.d("Save Success", "On Success: Data Written Successfully!")
@@ -109,10 +136,13 @@ class CreateUpdateActivity : AppCompatActivity() {
     }
 
     private fun clearEditText() {
-        message_received_edittext.setText("")
-        message_reply_edittext.setText("")
+        target_name_edittext.setText("")
+        reply_rate_edittext.setText("")
     }
 
+    /**
+     *
+     */
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
