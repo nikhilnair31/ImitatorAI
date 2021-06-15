@@ -1,5 +1,6 @@
 package com.sil.imitatorai.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -9,18 +10,22 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.sil.imitatorai.R
 import com.sil.imitatorai.ReplyMessageAdapter
 import com.sil.imitatorai.models.SaveCustomeMessage
 import io.realm.Realm
-import kotlinx.android.synthetic.main.customize_message_activity.*
+import kotlinx.android.synthetic.main.create_target_activity.*
+import kotlinx.android.synthetic.main.homepage_activity.*
 import java.util.*
 
 /**
  *
  */
-class CustomizeMessageActivity : AppCompatActivity() {
+class HomepageActivity : AppCompatActivity() {
 
+    private val gson: Gson = Gson()
     private lateinit var realm: Realm
     private lateinit var list: ArrayList<SaveCustomeMessage>
 
@@ -29,7 +34,7 @@ class CustomizeMessageActivity : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.customize_message_activity)
+        setContentView(R.layout.homepage_activity)
 
         realm = Realm.getDefaultInstance()
         realm.beginTransaction()
@@ -39,7 +44,6 @@ class CustomizeMessageActivity : AppCompatActivity() {
 
         initiateAdapter()
         checkIfListEmpty()
-        // submit_button.setOnClickListener { initEditText() }
 
         notification_layout.setOnClickListener {
             openNotificationAccess()
@@ -48,7 +52,7 @@ class CustomizeMessageActivity : AppCompatActivity() {
             openNotificationAccess()
         }
         create_msg.setOnClickListener {
-            val intent = Intent(this, CreateUpdateActivity::class.java)
+            val intent = Intent(this, AddTargetActivity::class.java)
             intent.putExtra(IS_UPDATE_MESSAGE, false)
             startActivityForResult(intent, Companion.REQUEST_CODE_DATA)
         }
@@ -60,19 +64,17 @@ class CustomizeMessageActivity : AppCompatActivity() {
         checkIfPermissionGiven()
     }
 
+    @SuppressLint("LogConditional")
     private fun initiateAdapter() {
         val prefs = getSharedPreferences("test", Context.MODE_PRIVATE)
-        val map: HashMap<String, *> = prefs.all as HashMap<String, *>
-        val mlist = mutableListOf<HashMap<String, String>>()
-        for ((key, value) in map) {
-            val minimap: Any = hashMapOf(key to value)
-            mlist.add(minimap as HashMap<String, String>)
-        }
-        Log.d("mlist", mlist.toString())
-        Log.d("allEntries", map.toString())
+        val listType = object : TypeToken<MutableList<HashMap<String, String>>>() {}.type
+        val prefalllist: MutableList<HashMap<String, String>> =
+            gson.fromJson(prefs.all["data"] as String, listType)
+        Log.d("og prefalllist", prefalllist.toString())
+        // recyclerview.adapter = TargetsAdapter(prefalllist, this) { item -> doClick(item) }
 
         list = ArrayList(realm.where(SaveCustomeMessage::class.java).findAll())
-        Log.d("list", list.toString())
+        Log.d("rlist", list.toString())
         recyclerview.adapter = ReplyMessageAdapter(list, this) { item -> doClick(item) }
     }
 
@@ -124,7 +126,7 @@ class CustomizeMessageActivity : AppCompatActivity() {
      *
      */
     private fun doClick(item: SaveCustomeMessage) {
-        val intent = Intent(this, CreateUpdateActivity::class.java)
+        val intent = Intent(this, AddTargetActivity::class.java)
         intent.putExtra(IS_UPDATE_MESSAGE, true)
         intent.putExtra("DATA", item)
         startActivityForResult(intent, Companion.REQUEST_CODE_DATA)

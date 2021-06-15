@@ -8,14 +8,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sil.imitatorai.models.SaveCustomeMessage
 import kotlinx.android.synthetic.main.item_message.view.*
 
+/**
+ *
+ */
 class ReplyMessageAdapter(
     private val items: ArrayList<SaveCustomeMessage>,
     val context: Context,
     val listner: (SaveCustomeMessage) -> Unit
 ) : RecyclerView.Adapter<ReplyMessageAdapter.ViewHolder>() {
 
-    private var listener: ((item: SaveCustomeMessage) -> Unit)? = null
-
+    /**
+     *
+     */
     override fun onBindViewHolder(holder: ViewHolder, p1: Int) {
         holder.setItem(items.get(p1))
         // holder?.messageExpectedText?.text = items[p1].expectedMessage

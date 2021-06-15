@@ -42,7 +42,7 @@
         android:fontFamily="@font/montserrat"
         android:lines="3"
         android:text="@string/about_me"
-        android:textColor="@color/header_color"
+        android:textColor="@color/app_secondary_text"
         android:textSize="24sp" />
 
     <TextView

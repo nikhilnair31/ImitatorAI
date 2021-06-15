@@ -17,11 +17,12 @@ class SplashActivity : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        setContentView(R.layout.splash_screen_activity)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(applicationContext, CustomizeMessageActivity::class.java)
+            val intent = Intent(applicationContext, HomepageActivity::class.java)
             startActivity(intent)
+            finish()
         }, 500)
     }
 }
