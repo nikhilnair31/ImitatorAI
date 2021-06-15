@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">imitatorAI</string>
     <string name="enter_the_expected_message">Enter the expected message from your friend</string>
-    <string name="target_name_hint">Name of contact</string>
+    <string name="target_name_hint">Name of target contact</string>
     <string name="reply_rate_hint">Frequency of replies</string>
     <string name="add">Add</string>
     <string name="delete_msg">Delete this message</string>
@@ -13,6 +13,8 @@
     <string name="about_me">Hi\nI\'m Nikhil\nI code garbage apps and sites</string>
     <string name="i_am">About Me</string>
     <string name="share">Share App</string>
+    <string name="play_store_link">https://play.google.com/store/apps/dev?id=5678454527601486137</string>
+    <string name="github_link">https://github.com/nikhilnair31</string>
     <string name="source_code">Github Profile</string>
     <string name="create_new">Create Target</string>
     <string name="give_permission">This app requires notification access to read notifications and reply accordingly.</string>

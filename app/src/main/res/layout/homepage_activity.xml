@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,22 +7,30 @@
     android:fitsSystemWindows="true">
 
 
-    <com.google.android.material.circularreveal.CircularRevealRelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/auto_reply"
-            android:textColor="@color/black"
-            android:textSize="35sp"
-            android:textStyle="bold" />
+            android:textColor="@color/fab_primary_color"
+            android:textSize="42sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -30,102 +38,118 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/ic_info" />
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/ic_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/notification_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="32dp"
             android:layout_toStartOf="@+id/info_button"
-             />
+            app:layout_constraintEnd_toStartOf="@+id/info_button"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/no_target"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/no_target_assigned"
-            android:textColor="@color/header_color" />
+            android:textColor="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toTopOf="@+id/botto_layout"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerview"
+            app:layout_constraintStart_toStartOf="@+id/recyclerview"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_below="@+id/notification_layout"
-            android:layout_marginTop="40dp" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/botto_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/botto_layout"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
             style="@style/MyCardView"
-             android:elevation="20dp"
-            app:cardElevation="20dp"
-            android:layout_alignParentBottom="true">
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:elevation="20dp"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/montserrat"
+                android:padding="15dp"
+                android:text="@string/give_permission"
+                app:layout_constraintBottom_toTopOf="@+id/give_permission_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/give_permission_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/transparent_background"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/give_permission_access"
+                android:textAllCaps="true"
+                android:textColor="@color/fab_primary_color"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:layout_marginStart="@dimen/margin_sixteen"
-                    android:layout_marginTop="@dimen/margin_ten"
-                    android:layout_marginEnd="@dimen/margin_sixteen"
-                    android:layout_marginBottom="@dimen/margin_sixteen"
-                    android:fontFamily="@font/montserrat"
-                    android:text="@string/give_permission" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/give_permission_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/margin_sixteen"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="@dimen/margin_sixteen"
-                    android:layout_marginBottom="@dimen/margin_sixteen"
-                    android:background="@drawable/transparent_background"
-                    android:drawablePadding="8dp"
-                    android:fontFamily="@font/montserrat"
-                    android:gravity="center"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="@string/give_permission_access"
-                    android:textAllCaps="true"
-                    android:textColor="@color/fab_primary_color"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-    </com.google.android.material.circularreveal.CircularRevealRelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/create_msg"
+        android:id="@+id/add_target"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:baselineAlignBottom="true"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:backgroundTint="@color/colorAccent"
+        app:backgroundTint="@color/header_color"
         app:icon="@drawable/ic_add_white"
         app:iconTint="@color/white"
         app:layout_anchorGravity="end"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:shapeAppearanceOverlay="@style/SingleFab" />
 
-</com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

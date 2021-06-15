@@ -16,23 +16,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:layout_toStartOf="@+id/close_button"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/create_new"
-            android:textColor="@color/black"
-            android:textSize="35sp"
+            android:textColor="@color/fab_primary_color"
+            android:textSize="42sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/close_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="40dp"
             android:background="@drawable/icon_close"
             android:clickable="true"
             android:focusable="true" />
@@ -46,17 +46,16 @@
             android:layout_below="@+id/header"
             android:layout_marginTop="20dp"
             android:hint="@string/target_name_hint"
-            android:paddingLeft="30dp"
-            android:paddingTop="5dp"
-            android:paddingRight="30dp"
-            android:paddingBottom="5dp">
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="8dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/target_name_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
-                android:inputType="textPersonName"
                 android:paddingTop="@dimen/margin_sixteen"
                 android:paddingBottom="@dimen/margin_sixteen" />
 
@@ -71,10 +70,10 @@
             android:layout_marginTop="0dp"
             android:backgroundTint="@color/fab_primary_color"
             android:hint="@string/reply_rate_hint"
-            android:paddingLeft="30dp"
-            android:paddingTop="5dp"
-            android:paddingRight="30dp"
-            android:paddingBottom="5dp">
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="8dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/reply_rate_edittext"
@@ -93,17 +92,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:backgroundTint="@color/fab_primary_color"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/colorAccent"
         android:baselineAlignBottom="true"
         android:clickable="true"
         android:focusable="true"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
-        android:text="@string/done"
         android:textColor="@color/white"
         android:textSize="16sp"
+        app:icon="@drawable/ic_baseline_check_24"
         app:shapeAppearanceOverlay="@style/TextFab" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -112,17 +111,17 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginStart="@dimen/margin_sixteen"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="80dp"
-        android:backgroundTint="@color/colorAccent"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="96dp"
+        android:backgroundTint="@color/colorPrimary"
         android:baselineAlignBottom="true"
         android:clickable="true"
         android:focusable="true"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
-        android:text="@string/delete"
         android:textColor="@color/white"
         android:textSize="16sp"
+        app:icon="@android:drawable/ic_menu_close_clear_cancel"
         app:shapeAppearanceOverlay="@style/TextFab" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

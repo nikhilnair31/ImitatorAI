@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <color name="colorPrimary">#FFE6FF</color>
-    <color name="colorPrimaryDark">#FFB3FF</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#FFEBB8</color>
 
     <color name="divider_line">#F2F2F2</color>
