@@ -2,10 +2,11 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/AppTheme"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/header"
+        android:id="@+id/about_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -32,7 +33,7 @@
         android:id="@+id/text_two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/header"
+        android:layout_below="@+id/about_header"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="16dp"
@@ -41,7 +42,7 @@
         android:fontFamily="@font/montserrat"
         android:lines="3"
         android:text="@string/about_me"
-        android:textColor="@color/dark_gray"
+        android:textColor="@color/less_dark_gray"
         android:textSize="24sp" />
 
     <TextView
@@ -57,6 +58,7 @@
         android:background="@drawable/transparent_background"
         android:drawableStart="@drawable/ic_share_2"
         android:drawablePadding="8dp"
+        android:drawableTint="@color/header_color"
         android:elevation="8dp"
         android:fontFamily="@font/montserrat"
         android:paddingStart="10dp"
@@ -81,6 +83,7 @@
         android:background="@drawable/transparent_background"
         android:drawableStart="@drawable/ic_github"
         android:drawablePadding="8dp"
+        android:drawableTint="@color/header_color"
         android:elevation="8dp"
         android:fontFamily="@font/montserrat"
         android:paddingStart="10dp"

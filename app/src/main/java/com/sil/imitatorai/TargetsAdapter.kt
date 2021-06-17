@@ -22,7 +22,7 @@ class TargetsAdapter(
     override fun onBindViewHolder(holder: ViewHolder, ind: Int) {
         holder.setItem(items[ind])
         holder.targetName.text = items[ind]["targetname"]
-        holder.replyRate.text = items[ind]["replyrate"]
+        holder.replyRate.text = items[ind]["replydelay"]
     }
 
     /**
@@ -41,12 +41,12 @@ class TargetsAdapter(
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val targetName = view.target_name_txt
-        val replyRate = view.reply_rate_txt
+        val replyRate = view.reply_delay_txt
         val trgLayout = view.target_layout
 
         fun setItem(item: HashMap<String, String>) {
             targetName?.text = item["targetname"]
-            replyRate?.text = item["replyrate"]
+            replyRate?.text = item["replydelay"]
             trgLayout.setOnClickListener {
                 listner(item)
             }

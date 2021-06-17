@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:theme="@style/AppTheme" >
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTextView"
+            android:id="@+id/app_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -45,43 +45,33 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/notification_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="32dp"
-            android:layout_toStartOf="@+id/info_button"
-            app:layout_constraintEnd_toStartOf="@+id/info_button"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/no_target"
+            android:id="@+id/no_target_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/no_target_assigned"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/header_color"
             app:layout_constraintBottom_toTopOf="@+id/botto_layout"
             app:layout_constraintEnd_toEndOf="@+id/recyclerview"
             app:layout_constraintStart_toStartOf="@+id/recyclerview"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/app_title" />
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_below="@+id/notification_layout"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:requiresFadingEdge="horizontal|vertical"
             app:layout_constraintBottom_toTopOf="@+id/botto_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/app_title" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/botto_layout"
@@ -136,7 +126,24 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/add_target"
+        android:id="@+id/next_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:backgroundTint="@color/notif_on"
+        app:icon="@drawable/notification_not_on"
+        app:iconTint="@color/white"
+        app:layout_anchorGravity="end"
+        app:layout_constraintBottom_toTopOf="@+id/add_target_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:shapeAppearanceOverlay="@style/SingleFab" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/add_target_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -144,7 +151,7 @@
         android:layout_marginBottom="32dp"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:backgroundTint="@color/header_color"
+        app:backgroundTint="@color/fab_primary_color"
         app:icon="@drawable/ic_add_white"
         app:iconTint="@color/white"
         app:layout_anchorGravity="end"

@@ -11,6 +11,7 @@
     android:layout_marginBottom="10dp"
     android:background="@drawable/res_bottomflat_topcorner_audiocontrols"
     android:elevation="7dp"
+    android:theme="@style/AppTheme"
     app:shapeAppearanceOverlay="@style/RoundedCard">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,7 +32,7 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reply_rate_txt" />
+            app:layout_constraintTop_toBottomOf="@+id/reply_delay_txt" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/target_name_txt"
@@ -43,15 +44,15 @@
             android:layout_marginBottom="4dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/app_name"
-            android:textColor="@color/black"
+            android:textColor="@color/header_color"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/reply_rate_header"
+            app:layout_constraintBottom_toTopOf="@+id/reply_delay_header"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/target_name_header" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/reply_rate_header"
+            android:id="@+id/reply_delay_header"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -62,13 +63,13 @@
             android:text="@string/reply_rate_hint"
             android:textColor="@color/app_secondary_text"
             android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/reply_rate_txt"
+            app:layout_constraintBottom_toTopOf="@+id/reply_delay_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/target_name_txt" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/reply_rate_txt"
+            android:id="@+id/reply_delay_txt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -82,7 +83,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reply_rate_header" />
+            app:layout_constraintTop_toBottomOf="@+id/reply_delay_header" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/target_name_header"

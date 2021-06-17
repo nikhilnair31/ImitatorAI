@@ -2,7 +2,7 @@
     <string name="app_name">imitatorAI</string>
     <string name="enter_the_expected_message">Enter the expected message from your friend</string>
     <string name="target_name_hint">Name of target contact</string>
-    <string name="reply_rate_hint">Frequency of replies</string>
+    <string name="reply_rate_hint">Max reply delay time</string>
     <string name="add">Add</string>
     <string name="delete_msg">Delete this message</string>
     <string name="enable_notification">Turn on notification listening service</string>
@@ -22,4 +22,5 @@
     <string name="update">Update</string>
     <string name="delete">Delete</string>
     <string name="no_target_assigned">No Target Contact Assigned</string>
+    <string name="continue_btn_text">Continue</string>
 </resources>

@@ -2,6 +2,9 @@ package com.sil.imitatorai.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,6 +14,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.sil.imitatorai.R
 import kotlinx.android.synthetic.main.create_target_activity.*
+import kotlinx.android.synthetic.main.homepage_activity.*
 import java.util.*
 
 /**
@@ -21,7 +25,6 @@ class AddTargetActivity : AppCompatActivity() {
     val TAG = "AddTargetActivity"
     private val gson: Gson = Gson()
     private var isUpdateMessage = false
-    private var messageId = ""
 
     /**
      *
@@ -30,13 +33,22 @@ class AddTargetActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.create_target_activity)
+        val shader = LinearGradient(
+            0f,
+            0f,
+            about_header.textSize * 3,
+            0f,
+            getColor(R.color.start_grad),
+            getColor(R.color.end_grad),
+            Shader.TileMode.CLAMP
+        )
+        about_header.paint.shader = shader
 
         isUpdateMessage = intent.getBooleanExtra("IS_UPDATE_MESSAGE", false)
         if (intent != null && isUpdateMessage) {
             val ser = intent.getSerializableExtra("DATA") as HashMap<String, String>
             updateMessage(ser)
             delete_button.visibility = View.VISIBLE
-            messageId = ser["targetname"] ?: return
         } else {
             delete_button.visibility = View.GONE
         }
@@ -95,7 +107,7 @@ class AddTargetActivity : AppCompatActivity() {
             prefalllist.add(
                 hashMapOf(
                     "targetname" to target_name_edittext.text.toString(),
-                    "replyrate" to reply_rate_edittext.text.toString()
+                    "replydelay" to reply_delay_edittext.text.toString()
                 )
             )
             Log.d(TAG, "fin prefalllist\": $prefalllist")
@@ -104,8 +116,7 @@ class AddTargetActivity : AppCompatActivity() {
                 "data", gson.toJson(prefalllist)
             ).apply()
 
-        }
-        else {
+        } else {
             //SharedPrefs attempt
             val prefalllist: MutableList<HashMap<String, String>> = if (prefs.all["data"] != null) {
                 gson.fromJson(prefs.all["data"] as String, listType)
@@ -117,7 +128,7 @@ class AddTargetActivity : AppCompatActivity() {
             prefalllist.add(
                 hashMapOf(
                     "targetname" to target_name_edittext.text.toString(),
-                    "replyrate" to reply_rate_edittext.text.toString()
+                    "replydelay" to reply_delay_edittext.text.toString()
                 )
             )
             Log.d(TAG, "fin prefalllist\": $prefalllist")
@@ -136,11 +147,11 @@ class AddTargetActivity : AppCompatActivity() {
     }
 
     private fun checkError(): Boolean {
-        return !target_name_edittext.text?.isEmpty()!! && !reply_rate_edittext.text?.isEmpty()!!
+        return !target_name_edittext.text?.isEmpty()!! && !reply_delay_edittext.text?.isEmpty()!!
     }
 
     private fun updateMessage(data: HashMap<String, String>) {
         target_name_edittext.setText(data["targetname"])
-        reply_rate_edittext.setText(data["replyrate"])
+        reply_delay_edittext.setText(data["replydelay"])
     }
 }

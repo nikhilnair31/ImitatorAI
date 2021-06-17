@@ -1,12 +1,16 @@
 package com.sil.imitatorai.ui
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.sil.imitatorai.BuildConfig
 import com.sil.imitatorai.R
 import kotlinx.android.synthetic.main.about_popup.*
+import kotlinx.android.synthetic.main.splash_screen_activity.*
 
 /**
  *
@@ -20,7 +24,20 @@ class AboutPopup : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.about_popup)
 
-        close_dialog_button.setOnClickListener { finish() }
+        val shader = LinearGradient(
+            0f,
+            0f,
+            about_header.textSize * 3,
+            0f,
+            getColor(R.color.start_grad),
+            getColor(R.color.end_grad),
+            Shader.TileMode.CLAMP
+        )
+        about_header.paint.shader = shader
+
+        close_dialog_button.setOnClickListener {
+            finish()
+        }
 
         share_app.setOnClickListener {
             val sendIntent = Intent()

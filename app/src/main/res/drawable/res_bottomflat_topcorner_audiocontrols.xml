@@ -6,10 +6,10 @@
     <solid
         android:color="@color/white"/>
     <corners
-        android:topLeftRadius="@dimen/margin_fifteen"
-        android:topRightRadius="@dimen/margin_fifteen"
-        android:bottomLeftRadius="@dimen/margin_fifteen"
-        android:bottomRightRadius="@dimen/margin_fifteen"
+        android:topLeftRadius="@dimen/margin_twenty_four"
+        android:topRightRadius="@dimen/margin_twenty_four"
+        android:bottomLeftRadius="@dimen/margin_twenty_four"
+        android:bottomRightRadius="@dimen/margin_twenty_four"
         />
 
 </shape>

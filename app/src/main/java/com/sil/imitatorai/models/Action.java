@@ -51,16 +51,15 @@ public class Action implements Parcelable {
 		this.text = action.title.toString();
 		this.packageName = packageName;
 		this.p = action.actionIntent;
-//		if(action.getRemoteInputs() != null) {
-//			int size = action.getRemoteInputs().length;
-//			for(int i = 0; i < size; i++)
-//				remoteInputs.add(new RemoteInputParcel(action.getRemoteInputs()[i]));
-//		}
+		if(action.getRemoteInputs() != null) {
+			int size = action.getRemoteInputs().length;
+			for(int i = 0; i < size; i++)
+				remoteInputs.add(new RemoteInputParcel(action.getRemoteInputs()[i]));
+		}
 		this.isQuickReply = isQuickReply;
 	}
 
 	public void sendReply(Context context, String msg) throws PendingIntent.CanceledException {
-
 		Log.i("salman", "inside sendReply");
 
 		Intent intent = new Intent();

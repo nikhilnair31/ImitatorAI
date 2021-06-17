@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <color name="colorPrimary">#FFE6FF</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#FFEBB8</color>
@@ -7,16 +7,22 @@
     <color name="divider_line">#F2F2F2</color>
     <color name="app_secondary_text">#999999</color>
 
+    <color name="start_grad">#A7AAFF</color>
+    <color name="end_grad">#FAB4FF</color>
+
+    <color name="notif_on">#B3FFB5</color>
+    <color name="notif_off">#FFB3B3</color>
+
     <color name="white">#fff</color>
     <color name="black">#000000</color>
-    <color name="dark_gray">#222</color>
+    <color name="dark_gray">#262626</color>
+    <color name="less_dark_gray">#4D4D4D</color>
     <color name="light_gray">#eee</color>
     <color name="splash_background">#fff</color>
     <color name="transparent">#00000000</color>
 
-    <color name="header_color">#F3BFFF</color>
+    <color name="header_color">#8e62f2</color>
     <color name="fab_primary_color">#EBB8FF</color>
     <color name="fab_accent_color">#B8FFEB</color>
-    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true"> #ED9CFF</color>
 
 </resources>
