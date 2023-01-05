@@ -82,15 +82,15 @@ public class MyNotifierService extends NotificationListenerService {
         return super.onStartCommand(intent, flags, startId);
     }
 
-//    public void onNotificationRemoved(StatusBarNotification sbn) {
-//        super.onNotificationRemoved(sbn);
-//        Log.d(TAG, "onNotificationRemoved");
-//    }
+    public void onNotificationRemoved(StatusBarNotification sbn) {
+        super.onNotificationRemoved(sbn);
+        Log.d(TAG, "onNotificationRemoved");
+    }
 
     public void onNotificationPosted(StatusBarNotification sbn) {
         Log.d(TAG, "Here");
 
-        cancelNotification(sbn.getKey());
+        //cancelNotification(sbn.getKey());
         Action action = NotificationUtils.getQuickReplyAction(sbn.getNotification(), getPackageName());
         Log.d(TAG, "action: "+action);
 

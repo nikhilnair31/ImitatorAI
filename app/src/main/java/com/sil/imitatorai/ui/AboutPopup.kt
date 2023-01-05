@@ -17,9 +17,6 @@ import kotlinx.android.synthetic.main.splash_screen_activity.*
  */
 class AboutPopup : AppCompatActivity() {
 
-    /**
-     *
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.about_popup)
@@ -49,10 +46,14 @@ class AboutPopup : AppCompatActivity() {
             sendIntent.type = "text/plain"
             startActivity(sendIntent)
         }
-
         github_link.setOnClickListener {
             val openURL = Intent(Intent.ACTION_VIEW)
             openURL.data = Uri.parse(getString(R.string.github_link))
+            startActivity(openURL)
+        }
+        playstore_link.setOnClickListener {
+            val openURL = Intent(Intent.ACTION_VIEW)
+            openURL.data = Uri.parse(getString(R.string.play_store_link))
             startActivity(openURL)
         }
 

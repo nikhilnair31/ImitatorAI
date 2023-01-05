@@ -9,10 +9,6 @@ import android.provider.Settings;
 
 import androidx.fragment.app.Fragment;
 
-/**
- * Created by jj on 06/10/16.
- */
-
 public class NotificationListenerUtils {
 
     public static final int REQ_NOTIFICATION_LISTENER = 123;

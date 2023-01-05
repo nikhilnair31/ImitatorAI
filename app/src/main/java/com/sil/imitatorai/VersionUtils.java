@@ -2,10 +2,6 @@ package com.sil.imitatorai;
 
 import android.os.Build;
 
-/**
- * Created by jj on 26/05/17.
- */
-
 public class VersionUtils {
 
     public static boolean isKitKat() {

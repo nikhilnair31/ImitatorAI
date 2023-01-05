@@ -169,15 +169,13 @@ public abstract class BaseNotificationListener extends NotificationListenerServi
             }
         }
 
-        Runnable task = new Runnable() {
-            public void run() {
-                if (pending.size() > 0) {
-                    PendingNotification pn = pending.get(0);
-                    pending.remove(0);
-                    if(duplicateReplyPackages.contains(pn.getSbn().getPackageName()))
-                        notifHandled.add(getHashCode(pn.getSbn()));
-                    onNotificationPosted(pn.getSbn(), pn.getDismissKey());
-                }
+        Runnable task = () -> {
+            if (pending.size() > 0) {
+                PendingNotification pn1 = pending.get(0);
+                pending.remove(0);
+                if(duplicateReplyPackages.contains(pn1.getSbn().getPackageName()))
+                    notifHandled.add(getHashCode(pn1.getSbn()));
+                onNotificationPosted(pn1.getSbn(), pn1.getDismissKey());
             }
         };
         ScheduledFuture<?> scheduledFuture = worker.schedule(task, 200, TimeUnit.MILLISECONDS);

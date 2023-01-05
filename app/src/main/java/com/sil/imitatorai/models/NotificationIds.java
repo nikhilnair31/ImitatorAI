@@ -139,7 +139,7 @@ public class NotificationIds {
     private void detectNotificationIds(Context context)
     {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
-                .setSmallIcon(R.drawable.dummy_icon)
+                .setSmallIcon(R.drawable.ic_playstore)
                 .setContentTitle("1")
                 .setContentText("2")
                 .setContentInfo("3")

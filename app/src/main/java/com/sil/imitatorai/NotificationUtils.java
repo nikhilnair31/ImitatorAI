@@ -39,10 +39,6 @@ public class NotificationUtils {
                 System.currentTimeMillis() - sbn.getNotification().when <= TimeUnit.SECONDS.toMillis(recentTimeframeInSecs);
     }
 
-    /**
-     * http://stackoverflow.com/questions/9292032/extract-notification-text-from-parcelable-contentview-or-contentintent *
-     */
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static boolean notificationMatchesFilter(StatusBarNotification sbn, NotificationListenerService.RankingMap rankingMap) {
         NotificationListenerService.Ranking ranking = new NotificationListenerService.Ranking();
